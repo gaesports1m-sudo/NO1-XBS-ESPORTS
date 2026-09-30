@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NO1 XBS ESPORTS</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+html,body{
+    min-height:100%;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    color:white;
+    overflow-x:hidden;
+    background:#07102d;
+}
+
+/* ================= PREMIUM BACKGROUND ================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:-50%;
+    z-index:-3;
+    background:
+        radial-gradient(circle at 20% 20%,#00d9ff 0%,transparent 18%),
+        radial-gradient(circle at 80% 20%,#a000ff 0%,transparent 20%),
+        radial-gradient(circle at 50% 80%,#ff0099 0%,transparent 18%),
+        radial-gradient(circle at 10% 90%,#0066ff 0%,transparent 20%),
+        linear-gradient(135deg,#03091e,#111052,#19052d);
+    animation:bgMove 12s ease-in-out infinite alternate;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    opacity:.35;
+    background-image:
+        linear-gradient(#ffffff10 1px,transparent 1px),
+        linear-gradient(90deg,#ffffff10 1px,transparent 1px);
+    background-size:45px 45px;
+    transform:perspective(500px) rotateX(60deg) scale(2);
+    transform-origin:center bottom;
+    animation:gridMove 8s linear infinite;
+}
+
+@keyframes bgMove{
+    0%{
+        transform:rotate(0deg) scale(1);
+    }
+    50%{
+        transform:rotate(3deg) scale(1.08);
+    }
+    100%{
+        transform:rotate(-3deg) scale(1.15);
+    }
+}
+
+@keyframes gridMove{
+    from{
+        background-position:0 0,0 0;
+    }
+    to{
+        background-position:0 90px,90px 0;
+    }
+}
+
+/* Floating lights */
+
+.light{
+    position:fixed;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    filter:blur(45px);
+    opacity:.5;
+    z-index:-1;
+}
+
+.light1{
+    background:#00eaff;
+    top:10%;
+    left:-50px;
+    animation:float1 7s infinite alternate;
+}
+
+.light2{
+    background:#ff00d4;
+    right:-50px;
+    top:35%;
+    animation:float2 8s infinite alternate;
+}
+
+.light3{
+    background:#713cff;
+    bottom:-40px;
+    left:35%;
+    animation:float3 6s infinite alternate;
+}
+
+@keyframes float1{
+    to{transform:translate(100px,120px)}
+}
+
+@keyframes float2{
+    to{transform:translate(-100px,80px)}
+}
+
+@keyframes float3{
+    to{transform:translate(80px,-70px)}
+}
+
+/* ================= UI 1 ================= */
+
+#ui1{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-card{
+    width:100%;
+    max-width:390px;
+    padding:30px 22px;
+    text-align:center;
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,30,90,.85),
+            rgba(55,5,90,.75)
+        );
+
+    border:1px solid #00eaff;
+    box-shadow:
+        0 0 15px #00eaff66,
+        0 0 50px #9b00ff44,
+        inset 0 0 30px #ffffff0b;
+
+    backdrop-filter:blur(18px);
+}
+
+.logo{
+    width:120px;
+    height:120px;
+    margin:0 auto 20px;
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(circle,#15175d,#09052b);
+
+    border:3px solid #00eaff;
+
+    box-shadow:
+        0 0 12px #00eaff,
+        0 0 35px #c000ff,
+        inset 0 0 20px #ff00d455;
+
+    animation:logoGlow 2.5s infinite alternate;
+}
+
+.logo .crown{
+    font-size:23px;
+}
+
+.logo .logo-name{
+    font-size:21px;
+    font-weight:900;
+    font-style:italic;
+    text-shadow:0 0 10px #00eaff;
+}
+
+.logo .logo-esports{
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+@keyframes logoGlow{
+    from{
+        transform:scale(1);
+        box-shadow:
+        0 0 12px #00eaff,
+        0 0 30px #c000ff;
+    }
+    to{
+        transform:scale(1.05);
+        box-shadow:
+        0 0 25px #00eaff,
+        0 0 50px #ff00d4;
+    }
+}
+
+.login-card h1{
+    font-size:32px;
+    margin-bottom:8px;
+    background:linear-gradient(90deg,#00eaff,#fff,#ff29d8);
+    background-clip:text;
+-webkit-background-clip:text;
+    color:transparent;
+}
+
+.login-card p{
+    color:#d9e6ff;
+    margin-bottom:24px;
+}
+
+.name-input{
+    width:100%;
+    height:55px;
+    padding:0 18px;
+
+    border:2px solid #00cfff;
+    border-radius:15px;
+
+    outline:none;
+    background:#050b2caa;
+    color:white;
+
+    font-size:16px;
+    text-align:center;
+
+    box-shadow:
+        0 0 15px #00cfff44;
+}
+
+.name-input::placeholder{
+    color:#b9c8ed;
+}
+
+.enter-btn{
+    width:100%;
+    height:55px;
+    margin-top:15px;
+
+    border:0;
+    border-radius:15px;
+
+    color:white;
+    font-size:16px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00bfff,
+            #704cff,
+            #ff00c8
+        );
+
+    box-shadow:
+        0 0 15px #00d9ff77,
+        0 0 30px #9c00ff44;
+
+    transition:.25s;
+}
+
+.enter-btn:active{
+    transform:scale(.95);
+}
+
+/* ================= UI 2 ================= */
+
+#ui2{
+    display:none;
+    min-height:100vh;
+    padding:12px;
+}
+
+.main-card{
+    width:100%;
+    max-width:520px;
+    min-height:calc(100vh - 24px);
+    margin:auto;
+
+    padding:18px 15px 20px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,18,65,.82),
+            rgba(38,5,67,.82)
+        );
+
+    border:1px solid #00eaff88;
+
+    box-shadow:
+        0 0 20px #00d9ff44,
+        0 0 60px #b000ff33,
+        inset 0 0 40px #ffffff08;
+
+    backdrop-filter:blur(15px);
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.header h1{
+    font-size:23px;
+    line-height:1.25;
+    font-weight:1000;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00eaff,
+            #ffffff,
+            #ff24d8
+        );
+
+    background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+
+    text-shadow:0 0 20px #00eaff33;
+}
+
+.header h1::before{
+    content:"✦ ";
+    color:#00eaff;
+}
+
+.header h1::after{
+    content:" ✦";
+    color:#ff24d8;
+}
+
+/* Tournament Buttons */
+
+.tournament{
+    position:relative;
+
+    width:100%;
+    height:64px;
+
+    margin:9px 0;
+
+    border-radius:18px;
+
+    color:white;
+    font-size:16px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            100deg,
+            #07144b,
+            #321064,
+            #07144b
+        );
+
+    transition:.25s;
+}
+
+.tournament:active{
+    transform:scale(.96);
+}
+
+/* FF */
+
+.ff{
+    border:2px solid #ff16db;
+
+    box-shadow:
+        0 0 10px #ff16db,
+        inset 0 0 15px #ff16db33;
+}
+
+/* Free 4V4 */
+
+.free4{
+    border:2px solid #00d9ff;
+
+    box-shadow:
+        0 0 10px #00d9ff,
+        inset 0 0 15px #00d9ff33;
+}
+
+/* Paid 4V4 */
+
+.paid4{
+    border:2px solid #c62bff;
+
+    box-shadow:
+        0 0 10px #c62bff,
+        inset 0 0 15px #c62bff33;
+}
+
+/* Center Logo */
+
+.center-logo{
+    width:150px;
+    height:150px;
+
+    margin:17px auto;
+
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        radial-gradient(
+            circle,
+            #11175f,
+            #090427
+        );
+
+    border:4px solid #00eaff;
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 35px #ff00d4,
+        inset 0 0 25px #7b00ff88;
+
+    animation:logoGlow 2.5s infinite alternate;
+}
+
+.center-logo .crown{
+    font-size:25px;
+}
+
+.center-logo .xbs{
+    font-size:27px;
+    font-weight:1000;
+    font-style:italic;
+    text-shadow:
+        0 0 8px #00eaff,
+        0 0 15px white;
+}
+
+.center-logo .esports{
+    font-size:17px;
+    font-weight:900;
+    font-style:italic;
+    letter-spacing:2px;
+}
+
+/* BR */
+
+.freebr{
+    border:2px solid #00d9ff;
+
+    box-shadow:
+        0 0 10px #00d9ff,
+        inset 0 0 15px #00d9ff33;
+}
+
+.paidbr{
+    border:2px solid #ff16db;
+
+    box-shadow:
+        0 0 10px #ff16db,
+        inset 0 0 15px #ff16db33;
+}
+
+/* Support */
+
+.support{
+    display:block;
+
+    width:55%;
+    height:55px;
+
+    margin:14px auto;
+
+    border:2px solid #00eaff;
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #071a50,
+            #3b0871
+        );
+
+    color:white;
+
+    font-size:16px;
+    font-weight:900;
+
+    box-shadow:
+        0 0 15px #00eaff77;
+
+    cursor:pointer;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+
+    margin-top:14px;
+
+    font-size:13px;
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    color:#e8edff;
+
+    text-shadow:
+        0 0 8px #00eaff;
+}
+
+/* Mobile */
+
+@media(max-width:380px){
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .tournament{
+        height:59px;
+        font-size:14px;
+    }
+
+    .center-logo{
+        width:130px;
+        height:130px;
+    }
+
+    .center-logo .xbs{
+        font-size:23px;
+    }
+
+    .center-logo .esports{
+        font-size:14px;
+    }
+}
+  #welcomeUser{
+    text-align:center;
+    margin:12px 0 18px;
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    background:linear-gradient(
+        90deg,
+        #00eaff,
+        #ffffff,
+        #ff2bd6,
+        #00eaff
+    );
+    background-size:300% auto;
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:welcomeGlow 3s linear infinite;
+    text-shadow:
+        0 0 8px rgba(0,234,255,.6),
+        0 0 18px rgba(255,43,214,.4);
+}
+
+@keyframes welcomeGlow{
+    0%{
+        background-position:0% center;
+    }
+    100%{
+        background-position:300% center;
+    }
+}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Premium lights -->
+<div class="light light1"></div>
+<div class="light light2"></div>
+<div class="light light3"></div>
+
+
+<!-- ================= UI 1 ================= -->
+
+<section id="ui1">
+
+    <div class="login-card">
+
+        <div class="logo">
+            <div class="crown"></div>
+            <div class="logo-name">NO1 XBS</div>
+            <div class="logo-esports">ESPORTS</div>
+        </div>
+
+        <h1>WELCOME</h1>
+
+        <p>
+            Welcome to <b>NO1 XBS ESPORTS</b>
+        </p>
+
+        <input
+            id="username"
+            class="name-input"
+            type="text"
+            placeholder="Enter Your Name"
+        >
+
+        <button
+            class="enter-btn"
+            onclick="enterWebsite()"
+        >
+            🚀 ENTER WEBSITE
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= UI 2 ================= -->
+
+<section id="ui2">
+
+    <div class="main-card">
+
+        <div class="header">
+            <h1>
+                FREE AND PAID<br>
+                TOURNAMENT WEBSITE
+            </h1>
+        </div>
+        <div id="welcomeUser"></div>
+
+        <!-- FF सबसे ऊपर -->
+
+        <!-- FF TURNAMENT - SIMPLE -->
+<button class="tournament ff">
+    🔥 &nbsp; FF TOURNAMENT
+</button>
+
+
+        <!-- FREE 4V4 -->
+<button class="tournament paid4"
+onclick="window.open('https://t.me/s/no1xbsesports','_blank')">
+    👥 FREE 4vs4 TOURNAMENT
+</> »
+
+
+        <!-- PAID 4V4 -->
+
+        <button class="tournament paid4"
+onclick="window.open('https://www.instagram.com/no5___blaxy___10k?stkn=cjlycDllOXUxZXU0','_blank')">
+    💎 &nbsp; PAID 4vs4 TOURNAMENT &nbsp; »
+        </button>
+
+
+        <!-- CENTER LOGO -->
+
+        <div class="center-logo">
+
+            <div class="crown"></div>
+
+            <div class="xbs">
+                NO1 XBS
+            </div>
+
+            <div class="esports">
+                ESPORTS
+            </div>
+
+        </div>
+
+
+        <!-- FREE BR -->
+
+        <button class="tournament freebr"
+onclick="window.open('https://t.me/s/freeno1xbsesports','_blank')">
+    🪂 &nbsp; FREE BR TOURNAMENT &nbsp; »
+        </button>
+
+
+        <!-- PAID BR -->
+
+<button class="tournament paidbr"
+onclick="window.open('https://t.me/freeno2xbsesports','_blank')">
+    🪂 &nbsp; PAID BR TOURNAMENT &nbsp; »
+</button>
+
+        <!-- SUPPORT -->
+
+        <button class="support"
+onclick="window.open('https://t.me/no1xerox5k','_blank')">
+    🎧 &nbsp; SUPPORT &nbsp; »
+        </button>
+
+
+        <div class="footer">
+            🔥 &nbsp; MOD BY - NO1 XEROX &nbsp; 🔥
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+function enterWebsite(){
+
+    const name =
+        
+      document.getElementById("username").value.trim();
+
+  document.getElementById("welcomeUser").innerText = "WELCOME " + name;
+   
+  if(name === ""){
+        alert("Please enter your name!");
+        return;
+    }
+
+    document.getElementById("ui1").style.display="none";
+
+    document.getElementById("ui2").style.display="block";
+
+    window.scrollTo(0,0);
+}
+
+</script>
+
+</body>
+</html>
